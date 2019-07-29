@@ -1,0 +1,180 @@
+<!doctype html>
+<html class="fixed">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Domoticz Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light"
+        rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="assets/stylesheets/theme.css" />
+    <link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
+    <link rel="stylesheet" href="assets/stylesheets/theme-custom.css" />
+    <script src="assets/vendor/modernizr/modernizr.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+</head>
+
+<body ng-app="dashboardApp" ng-controller="indexController">
+
+    <section class="body">
+
+        <header class="header">
+            <div class="logo-container">
+                <a href="index.html" class="logo">
+                    <h3>Domoticz Dashboard</h3>
+                </a>
+                <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
+                    data-fire-event="sidebar-left-opened">
+                    <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <span class="separator"></span>
+                <ul class="notifications">
+                    <li>
+                        <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+                            <i class="fa fa-bell"></i>
+                            <span class="badge">3</span>
+                        </a>
+                        <div class="dropdown-menu notification-menu">
+                            <div class="notification-title">
+                                <span class="pull-right label label-default">3</span>
+                                Alerts
+                            </div>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="clearfix">
+                                            <div class="image">
+                                                <i class="fa fa-thumbs-down bg-danger"></i>
+                                            </div>
+                                            <span class="title">Server is Down!</span>
+                                            <span class="message">Just now</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="clearfix">
+                                            <div class="image">
+                                                <i class="fa fa-lock bg-warning"></i>
+                                            </div>
+                                            <span class="title">User Locked</span>
+                                            <span class="message">15 minutes ago</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="clearfix">
+                                            <div class="image">
+                                                <i class="fa fa-signal bg-success"></i>
+                                            </div>
+                                            <span class="title">Connection Restaured</span>
+                                            <span class="message">10/10/2014</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <hr>
+                                <div class="text-right">
+                                    <a href="#" class="view-more">View All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <span class="separator"></span>
+            </div>
+
+        </header>
+
+
+        <div class="inner-wrapper">
+            <!-- start: sidebar -->
+            <aside id="sidebar-left" class="sidebar-left">
+
+                <div class="sidebar-header">
+                    <div class="sidebar-title">
+                        Navigation
+                    </div>
+                    <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html"
+                        data-fire-event="sidebar-left-toggle">
+                        <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+                    </div>
+                </div>
+
+                <div class="nano">
+                    <div class="nano-content">
+                        <nav id="menu" class="nav-main" role="navigation">
+                            <ul class="nav nav-main">
+                                <li>
+                                    <a href="index.html">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        <span>Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="nav-active">
+                                    <a href="devices.html">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        <span>Devices</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </aside>
+            <!-- end: sidebar -->
+
+            <section role="main" class="content-body">
+                <header class="page-header">
+                    <h2>Devices</h2>
+                </header>
+
+                <!-- start: page -->
+                <div class="row">
+
+                    <div class="col-md-12 col-lg-6 col-xl-6" ng-repeat="device in devices">
+                        <section class="panel panel-featured-left panel-featured-primary">
+                            <div class="panel-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-primary">
+                                            <i class="fa fa-life-ring"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title">{{device.Name}}</h4>
+                                            <div class="info">
+                                                <strong class="amount">1281</strong>
+                                                <span class="text-primary">(14 unread)</span>
+                                            </div>
+                                        </div>
+                                        <div class="summary-footer">
+                                            <a class="text-muted text-uppercase">{{device.LastUpdate}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+
+                <!-- end: page -->
+            </section>
+        </div>
+    </section>
+
+    <script src="assets/vendor/jquery/jquery.js"></script>
+    <script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="assets/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="assets/javascripts/theme.js"></script>
+    <script src="assets/javascripts/theme.custom.js"></script>
+    <script src="assets/javascripts/theme.init.js"></script>
+    <script src="scripts/indexController.js"></script>
+</body>
+
+</html>
