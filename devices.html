@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <title>Domoticz Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light"
-        rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/stylesheets/theme.css" />
@@ -16,14 +16,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
 </head>
 
-<body ng-app="dashboardApp" ng-controller="indexController">
+<body ng-app="dashboardApp" ng-controller="devicesController">
 
     <section class="body">
 
         <header class="header">
             <div class="logo-container">
                 <a href="index.html" class="logo">
-                    <h3>Domoticz Dashboard</h3>
+                    <img src="assets/images/home-icon.png" height="35" />
                 </a>
                 <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
                     data-fire-event="sidebar-left-opened">
@@ -93,9 +93,6 @@
             <aside id="sidebar-left" class="sidebar-left">
 
                 <div class="sidebar-header">
-                    <div class="sidebar-title">
-                        Navigation
-                    </div>
                     <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html"
                         data-fire-event="sidebar-left-toggle">
                         <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -134,30 +131,31 @@
                 <!-- start: page -->
                 <div class="row">
 
-                    <div class="col-md-12 col-lg-6 col-xl-6" ng-repeat="device in devices">
-                        <section class="panel panel-featured-left panel-featured-primary">
-                            <div class="panel-body">
-                                <div class="widget-summary">
-                                    <div class="widget-summary-col widget-summary-col-icon">
-                                        <div class="summary-icon bg-primary">
-                                            <i class="fa fa-life-ring"></i>
-                                        </div>
-                                    </div>
-                                    <div class="widget-summary-col">
-                                        <div class="summary">
-                                            <h4 class="title">{{device.Name}}</h4>
-                                            <div class="info">
-                                                <strong class="amount">1281</strong>
-                                                <span class="text-primary">(14 unread)</span>
-                                            </div>
-                                        </div>
-                                        <div class="summary-footer">
-                                            <a class="text-muted text-uppercase">{{device.LastUpdate}}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-condensed mb-none">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Hardware</th>
+                                        <th>Type</th>
+                                        <th>Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="device in devices">
+                                        <td>{{device.idx}}</td>
+                                        <td>{{device.ID}}</td>
+                                        <td>{{device.Name}}</td>
+                                        <td>{{device.HardwareName}}</td>
+                                        <td>{{device.Type}}</td>
+                                        <td>{{device.Data}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                 </div>
@@ -174,7 +172,7 @@
     <script src="assets/javascripts/theme.js"></script>
     <script src="assets/javascripts/theme.custom.js"></script>
     <script src="assets/javascripts/theme.init.js"></script>
-    <script src="scripts/indexController.js"></script>
+    <script src="scripts/devicesController.js"></script>
 </body>
 
 </html>
